@@ -1,50 +1,44 @@
 /*
-  Analog Input
- Demonstrates analog input by reading an analog sensor on analog pin 0 and
- turning on and off a light emitting diode(LED)  connected to digital pin 13. 
- The amount of time the LED will be on and off depends on
- the value obtained by analogRead(). 
- 
- The circuit:
- * Potentiometer attached to analog input 0
- * center pin of the potentiometer to the analog pin
- * one side pin (either one) to ground
- * the other side pin to +5V
- * LED anode (long leg) attached to digital output 13
- * LED cathode (short leg) attached to ground
- 
- * Note: because most Arduinos have a built-in LED attached 
- to pin 13 on the board, the LED is optional.
- 
- 
- Created by David Cuartielles
- modified 30 Aug 2011
- By Tom Igoe
- 
- This example code is in the public domain.
- 
- http://arduino.cc/en/Tutorial/AnalogInput
- 
+  This is my edit to the basic blink sketch to show how we might use functions
+  to replace the main command to blink an LED.  
+  
+  The following code is structured differently but wil behave identically to
+  the Example: Examples/Basics/Blink.ino
+  
+  Matt Green
+  Spring 2015
  */
+ 
+// I connected an LED to pin 13.  On most boards, there is an onboard LED attached
+// to pin 13.
+int led = 13;
 
-int sensorPin = A0;    // select the input pin for the potentiometer
-int ledPin = 13;      // select the pin for the LED
-int sensorValue = 0;  // variable to store the value coming from the sensor
 
-void setup() {
-  // declare the ledPin as an OUTPUT:
-  pinMode(ledPin, OUTPUT);  
+void setup() {                
+  // let the arduino know that you plan to send voltage out to pin 13
+  pinMode(led, OUTPUT);     
 }
 
+// the loop routine runs over and over again forever:
 void loop() {
-  // read the value from the sensor:
-  sensorValue = analogRead(sensorPin);    
-  // turn the ledPin on
-  digitalWrite(ledPin, HIGH);  
-  // stop the program for <sensorValue> milliseconds:
-  delay(sensorValue);          
-  // turn the ledPin off:        
-  digitalWrite(ledPin, LOW);   
-  // stop the program for for <sensorValue> milliseconds:
-  delay(sensorValue);                  
+ 
+// call the function blinkLED one time.  Send it the two pieces of information it
+// needs to run first the pinNumber that has the LED attached and second the
+// time (in milliseconds) that it should delay in between turning the LED on
+// and off.
+blinkLED(led, 1000);
+  
+}
+
+// This is a new function that I made to control the blinking LED
+// you should read more about how functions work in 
+// Arduino here: http://arduino.cc/en/Reference/FunctionDeclaration
+
+void blinkLED(int ledPin, int delayTime) {
+  
+  digitalWrite(ledPin, HIGH);   // turn the LED on (HIGH is the voltage level)
+  delay(delayTime);               // wait for a second
+  digitalWrite(ledPin, LOW);    // turn the LED off by making the voltage LOW
+  delay(delayTime);               // wait for a second
+  
 }
