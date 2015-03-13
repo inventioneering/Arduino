@@ -1,12 +1,22 @@
 /*
-  This is my edit to the basic blink sketch to show how we might use functions
-  to replace the main command to blink an LED.  
+ This is built upon the sketch:
+ https://github.com/inventioneering/Arduino/tree/master/BlinkFunction
   
-  The following code is structured differently but wil behave identically to
-  the Example: Examples/Basics/Blink.ino
-  
-  Matt Green
-  Spring 2015
+ It adds the second layer: loops.
+ 
+ In this file I focus on adding for() loops so we can make the LED blink
+ a set number of times before restarting.
+ 
+ The following sketch will blink the onboard LED 10 times, wait 3 seconds and then
+ start again.
+ 
+ It is powerful to compare the code in this file to the code required to do the 
+ same thing without loops: http://bit.ly/1wFdq80
+ 
+ Or this one that has neither loops nor functions: http://bit.ly/1BeVSek
+ 
+ Matt Green
+ Spring 2015
  */
  
 // I connected an LED to pin 13.  On most boards, there is an onboard LED attached
@@ -22,17 +32,23 @@ void setup() {
 // the loop routine runs over and over again forever:
 void loop() {
  
-// call the function blinkLED one time.  Send it the two pieces of information it
-// needs to run first the pinNumber that has the LED attached and second the
-// time (in milliseconds) that it should delay in between turning the LED on
-// and off.
-blinkLED(led, 1000);
+  /* I'm using a for loop becuase they are great for counting.  You can read
+     more about them here: http://arduino.cc/en/Reference/For
+   
+     notice that I again use the blinkLED(int, int) function which allows
+     me to condense the code necessary to make the LED blink 10 times.
+  
+  */
+  for(int counterVariable = 0; counterVariable < 10; counterVariable++) {
+    blinkLED(led, 300);
+  }
+  
+  // wait three seconds before starting over and blinking 10 times again
+  delay(3000);
+
+
   
 }
-
-// This is a new function that I made to control the blinking LED
-// you should read more about how functions work in 
-// Arduino here: http://arduino.cc/en/Reference/FunctionDeclaration
 
 void blinkLED(int ledPin, int delayTime) {
   
