@@ -1,12 +1,21 @@
 /*
-  Blink
-  Turns on an LED on for one second, then off for one second, repeatedly.
+ I'm altering the Blink.ino file so that I can show how to use both functions (subroutines) and for loops.
  
-  This example code is in the public domain.
+ In this example I'm going to create a loop for each of the behaviors below.
+ 
+ blink-blink-blink-blink   
+ pause
+ blink-blink-blink
+ pause
+ blink-blink
+ pause
+ blink
+ 
+ See below for more detail
+ 
+ Matt Green, Spring 2015
  */
- 
-// Pin 13 has an LED connected on most Arduino boards.
-// give it a name:
+
 int led = 13;
 
 // the setup routine runs once when you press reset:
@@ -15,14 +24,35 @@ void setup() {
   pinMode(led, OUTPUT);     
 }
 
-// the loop routine runs over and over again forever:
+
 void loop() {
- for(int j = 4; j > 0; j--) {
-  for(int i = 0; i < j; i++) {
+  
+  // this loop will run four times. Convince yourself that this is true.
+  for(int i = 0; i < 4; i++) {
    blinkLED();
-  } 
+  }
+  
+  // pause between blinks
   delay(1000);
- }
+  
+  // this loop will run three times. Convince yourself that this is true.
+  for(int i = 0; i < 3; i++) {
+   blinkLED();
+  }
+   
+  // pause between blinks
+  delay(1000);
+  
+   // this loop will run two times. Convince yourself that this is true.
+  for(int i = 0; i < 2; i++) {
+   blinkLED();
+  }
+   
+  // pause between blinks
+  delay(1000);
+  
+  // no loop needed this time
+  blinkLED();
 }
 
 void blinkLED() {
