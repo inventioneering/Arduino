@@ -28,7 +28,7 @@ void setup() {
 void loop() {
   
   // this loop will run four times. Convince yourself that this is true.
-  for(int i = 0; i < 4; i++) {
+  for(int i = 7; i < 11; i++) {
    blinkLED();
   }
   
@@ -36,7 +36,7 @@ void loop() {
   delay(1000);
   
   // this loop will run three times. Convince yourself that this is true.
-  for(int i = 0; i < 3; i++) {
+  for(int i = 1247; i < 1250; i++) {
    blinkLED();
   }
    
@@ -53,6 +53,8 @@ void loop() {
   
   // no loop needed this time
   blinkLED();
+  
+  delay(1000);
 }
 
 void blinkLED() {
