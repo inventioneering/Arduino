@@ -18,6 +18,7 @@
  */
 
 int led = 13;
+int delayTime = 90;
 
 // the setup routine runs once when you press reset:
 void setup() {                
@@ -68,7 +69,7 @@ void loop() {
 
 void blinkLED() {
   digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(200);               // wait for a second
+  delay(delayTime);               // wait for a second
   digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
-  delay(200);               // wait for a second 
+  delay(delayTime);               // wait for a second 
 }
