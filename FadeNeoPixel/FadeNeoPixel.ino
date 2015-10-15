@@ -12,6 +12,9 @@ uint32_t darkBlue = strip.Color(9, 75, 108);
 uint32_t lightBlue = strip.Color(65, 195, 255); 
 uint32_t greyBlue = strip.Color(16, 129, 193); 
 uint32_t blueGrey = strip.Color(75, 99, 107);
+///uint32_t hotPink = strip.Color(244, 20, 147);
+//uint32_t peachPuff = strip.Color(255, 218, 185);
+//uint32_t chartreuse = strip.Color(127,255,0);
 
 
 void setup() {
@@ -23,7 +26,7 @@ void loop() {
 
 
 for (int j = 0; j <= 12; j++) {
-   pulseRangeOfLeds(0, j, lightBlue, pulseDuration);
+   pulseRangeOfLeds(0, j, greyBlue, pulseDuration);
   }
 }
 
