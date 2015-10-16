@@ -24,11 +24,20 @@ void setup() {
 
 void loop() {
 
+  pulseOneLed(0, greyBlue, pulseDuration);  
+  
+//  pulseRangeOfLeds(0,12,greyBlue,pulseDuration);
 
-for (int j = 0; j <= 12; j++) {
-   pulseRangeOfLeds(0, j, greyBlue, pulseDuration);
-  }
+//  countUp();
+
 }
+
+void countUp() {
+    for (int j = 0; j <= 12; j++) {
+    pulseRangeOfLeds(0, j, greyBlue, pulseDuration);
+    }
+}
+
 
 
 void pulseOneLed(int pixelNumber, uint32_t color, int duration) {
