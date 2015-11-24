@@ -7,7 +7,7 @@ void setup() {
 
 void loop() {
   // plug into A0 and see what happens
-    Serial.print(analogRead(A0));
+    Serial.print(analogRead(A1));
     Serial.print("\n");
     delay(200);
  
