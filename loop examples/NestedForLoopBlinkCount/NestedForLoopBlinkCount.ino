@@ -67,6 +67,8 @@ void loop() {
  }
 }
 
+// this is is a function I created to blink an LED.  It exists to make the code within
+// void loop() simpler
 void blinkLED() {
   digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
   delay(delayTime);               // wait for a second
