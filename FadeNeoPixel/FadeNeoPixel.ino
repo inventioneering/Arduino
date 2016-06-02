@@ -1,10 +1,10 @@
 #include <Adafruit_NeoPixel.h>
 
-#define PIN 1
+#define PIN 9
 
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(24, PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(12, PIN, NEO_GRB + NEO_KHZ800);
 
-int pulseDuration = 10;
+int pulseDuration = 9;
 
 int pulseBrightness = 255;
 
@@ -15,6 +15,7 @@ uint32_t lightBlue = strip.Color(65, 195, 255);
 uint32_t greyBlue = strip.Color(16, 129, 193); 
 uint32_t blueGrey = strip.Color(75, 99, 107);
 uint32_t hotPink = strip.Color(244, 20, 147);
+uint32_t seaGreen = strip.Color(19,173,50);
 //uint32_t peachPuff = strip.Color(255, 218, 185);
 //uint32_t chartreuse = strip.Color(127,255,0);
 
@@ -28,9 +29,9 @@ void loop() {
 
 //  pulseOneLed(0, greyBlue, pulseDuration);  
   
-  pulseRangeOfLeds(0,24,blueGrey,pulseDuration);
+  //pulseRangeOfLeds(0,24,seaGreen,pulseDuration);
 
- // countUp();
+  countUp();
 
 }
 
