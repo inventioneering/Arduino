@@ -2,7 +2,8 @@
 
 #define PIN 6
 
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(24, PIN, NEO_GRB + NEO_KHZ800);
+
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(1, PIN, NEO_GRB + NEO_KHZ800);
 
 int pulseDuration = 40;
 
@@ -38,7 +39,7 @@ void loop() {
 
 void countUp() {
     for (int j = 0; j <= 12; j++) {
-    pulseRangeOfLeds(0, j, greyBlue, pulseDuration);
+    pulseRangeOfLeds(0, j, seaGreen, pulseDuration);
     }
 }
 
