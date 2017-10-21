@@ -1,0 +1,38 @@
+// we're going to write pseudocode... its a way to plan without having to write working code
+
+
+
+// working features
+// 
+// 
+
+// features to change
+// size();
+// ball movement
+//  move until "change" in direction noticed
+//  shouldn't be able to move diagonally
+
+// features to add
+// eat "apple" add an ellipse & change color
+// score keeper
+// end game sequence
+// background color/picture
+// hit walls, game over
+// go "opposite" direction, game over
+// speed up each time you eat an "apple"
+
+
+
+// ball movement ideas
+
+// set random movement direction at game start
+//  
+
+// if its moving up, don't let it move any other direction
+// if its moving down...
+// if its moving left...
+// if its moving right...
+
+
+
+
