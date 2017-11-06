@@ -1,9 +1,9 @@
 /*     Based on: http://howtomechatronics.com/tutorials/arduino/rotary-encoder-works-use-arduino/
  *     Setup to work on Arduino UNO
  */
- 
- #define outputA 8
- #define outputB 9
+ #include <LiquidCrystal.h>
+ #define outputA 2
+ #define outputB 3
  #define buttonPin 5
 
  int counter = 0; 
@@ -12,7 +12,11 @@
  int lastButtonState; 
  int buttonState;
 
+ LiquidCrystal lcd(7, 8, 9, 10, 11, 12); 
+
  void setup() { 
+  lcd.begin(16,4);
+  lcd.print("Hello, World!");
    pinMode (outputA,INPUT);
    pinMode (outputB,INPUT);
    pinMode (buttonPin, INPUT);
@@ -50,4 +54,6 @@
 //   }
    aLastState = aState; // Updates the previous state of the outputA with the current state
    lastButtonState = buttonState; // Updates the previous state of the buttonPin with the current state
+   lcd.setCursor(0,1);
+   lcd.print(counter);
  }
