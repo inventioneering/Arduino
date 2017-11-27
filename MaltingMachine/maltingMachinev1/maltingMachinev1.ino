@@ -81,7 +81,7 @@ void lcdPrint(int mode) {
 void loop() { 
 
 
-  goalTemp = map(analogRead(potPin),0,1023,100,140);
+  goalTemp = map(analogRead(potPin),0,1023,115,165);
  
 
 

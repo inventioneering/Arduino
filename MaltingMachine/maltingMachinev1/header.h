@@ -32,7 +32,7 @@
  int misterPin = 4;
 
  // Mode timer
- int modeOneTimer = 20;
+ int modeOneTimer = 300;
 
 
  // Goal Temp
