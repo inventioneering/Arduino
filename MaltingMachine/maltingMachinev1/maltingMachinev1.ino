@@ -1,4 +1,4 @@
-#include "header.h"
+  #include "header.h"
 #include "functions.h"
 
 void setup() { 
@@ -20,11 +20,12 @@ void setup() {
   //rotary endcoder stuff
   pinMode (outputA,INPUT);
   pinMode (outputB,INPUT);
-  pinMode (buttonPin, INPUT);
+  pinMode (buttonPin, INPUT_PULLUP);
   digitalWrite(outputA, HIGH);
   digitalWrite(outputB, HIGH);
   digitalWrite(buttonPin, LOW);
-  
+
+  // Serial Communication
   Serial.begin (9600);
   
   // Reads the initial state of the outputA
@@ -35,53 +36,45 @@ void setup() {
   dht.begin();
 }
 
-void lcdPrint(int mode) {
-  if(mode == 1) {
-   // ROW 1:  show temp
-    lcd.setCursor(13,0);
-    lcd.print(f);
-    
-    // ROW 2:  show humidity
-    lcd.setCursor(10,1);
-    lcd.print(h);
-  
-    // ROW 3: show Mode
-    lcd.setCursor(5,2);
-    lcd.print(modeName(getMode()));
-   
-    // ROW 4:Show time remaining for mode 1
-    lcd.setCursor(0,3);
-    lcd.print("Time Remaining: ");
-    lcd.setCursor(16,3);
-    lcd.print(modeOneTimer-millis()/1000);
-    if(modeOneTimer-millis()/1000 == 0) {  // reset timer
-      modeOneTimer += modeOneTimer;
-    }
-  } else if (mode == 2) {
-    // ROW 1:  show temp
-    lcd.setCursor(13,0);
-    lcd.print(f);
-    
-    // ROW 2:  show humidity
-    lcd.setCursor(10,1);
-    lcd.print(h);
-  
-    // ROW 3: show Mode
-    lcd.setCursor(5,2);
-    lcd.print(modeName(getMode()));
-   
-    // ROW 4:Show time remaining for mode 1
-    lcd.setCursor(0,3);
-    lcd.print("Goal Temp:          ");
-    lcd.setCursor(10,3);
-    lcd.print(goalTemp);
-  } 
-}
+
 
 void loop() { 
+  
+  // ****************  Rotary Encoder  ******************** //
+  
+  //  buttonState = digitalRead(buttonPin);  // reads the "current" state of the buttonPin
+  aState = digitalRead(outputA); // Reads the "current" state of the outputA
+ 
+  // If the previous and the current state of the outputA are different, that means a Pulse has occured
+  if (aState != aLastState)
+  {     
+    // If the outputB state is different to the outputA state, that means the encoder is rotating clockwise
+    if (digitalRead(outputB) != aState) { 
+      counter ++;
+      goalTemp += 5;
+      } else {  // otherwise its rotating counterclockwise
+        counter --;
+        goalTemp -= 5;
+      }
+          Serial.print("(Position, Button State): (");
+          Serial.print(counter);
+          Serial.print(",");
+          Serial.print(buttonState);
+          Serial.println(")");
+    } 
+  
+  aLastState = aState; // Updates the previous state of the outputA with the current state
+  lastButtonState = buttonState; // Updates the previous state of the buttonPin with the current state
+  lcd.setCursor(0,0);
+  lcd.print(counter);
 
+  
+//  //Serial.println(digitalRead(22));
+//  lcd.setCursor(0,0);
+//  lcd.print(digitalRead(22));
 
-  goalTemp = map(analogRead(potPin),0,1023,115,165);
+  // set goal temp to change in mode 2
+//  goalTemp = map(analogRead(potPin),0,1023,115,165);
  
 
 

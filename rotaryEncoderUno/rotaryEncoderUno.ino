@@ -43,11 +43,8 @@
      } else {
        counter --;
      }
-     Serial.print("(Position, Button State): (");
-     Serial.print(counter);
-     Serial.print(",");
-     Serial.print(buttonState);
-     Serial.println(")");
+     Serial.print("Counter: ");
+     Serial.println(counter);
    } 
 //   if(buttonState == HIGH) {
 //      Serial.println("Button is being pressed");
