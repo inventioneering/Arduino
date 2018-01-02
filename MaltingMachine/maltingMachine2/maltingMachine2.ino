@@ -27,25 +27,26 @@ void loop()
   }
   changeMode();  // toggle between modes 1 and 2
   
-  rotary.Update(); // Rotary_Class.h
-  checkDHT(); // dht_functions.h
+  //rotary.Update(); // Rotary_Class.h
+ checkDHT(); // dht_functions.h
 
-  if(mode == 1) {
-    // start 5 min timer
-    // when that ends, start 55 min timer
-    // turn on motor for 5 mins every 55 mins
-    // turn on mister for 5 mins every 55 mins
-  }
+ if(mode == 1) {
+   // start 5 min timer
+   // when that ends, start 55 min timer
+   // turn on motor for 5 mins every 55 mins
+   // turn on mister for 5 mins every 55 mins
+   }
 
-  if(mode == 2) {
-    // turn off mister
-    // turn on motor
-    // turn on heater if temp is below goalTemp
-    // turn off header if temp is above goalTemp
+ if(mode == 2) {
+   // turn off mister
+   // turn on motor
+   // turn on heater if temp is below goalTemp
+   // turn off header if temp is above goalTemp
   }
+  
   lcdPrint(mode,h,t,rotary.getGoalTemp()); // print whole mode
-
-  //fillLCD();
+  
+ //fillLCD();
   //debugDHTandRotary(); 
   
 }
