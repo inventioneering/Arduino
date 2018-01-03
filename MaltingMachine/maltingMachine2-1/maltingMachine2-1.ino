@@ -4,11 +4,11 @@
 #include "Timer_Class.h"
 
 
-
 #define buttonPin 21
 #define encoder0PinA 2
 #define encoder0PinB 3
 #define buttonPin 21
+
 volatile int encoder0Pos = 0;
 volatile int buttonState = 0;
 volatile int oldButtonState = 0;
