@@ -30,7 +30,7 @@ class Timer
     }
   }
 
-  int secondsLeft() {
+  long secondsLeft() {
     unsigned long value = (timerLength - millis())/1000;
     if(value > 0) {
       return value;

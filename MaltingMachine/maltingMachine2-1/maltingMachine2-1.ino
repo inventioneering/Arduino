@@ -16,6 +16,7 @@ volatile int oldButtonState = 0;
 
 float lastChangeTime;
 int mode = 1;
+boolean modeOneRunning = true;
 
 Timer timer1(300);
 
@@ -29,7 +30,8 @@ void setup()
   attachInterrupt(0, doEncoder, CHANGE);  // encoder pin on interrupt 0 - pin 2
 
   pinMode(buttonPin, INPUT);
-  attachInterrupt(2, changeMode, FALLING);
+  //attachInterrupt(2, changeMode, FALLING);
+  attachInterrupt(2, resetTimerTest, FALLING);  // debugging
   
   lcd.begin(20,4); // 20 columns, 4 rows
   setupLCD();  // lcd_functions.h
@@ -47,23 +49,26 @@ void setup()
 void loop()
 {
   //Serial.println(encoder0Pos);
-  Serial.println(millis() - lastChangeTime);
+ // Serial.println(millis() - lastChangeTime);
+    Serial.println(timer1.secondsLeft());
   //Serial.println(timer1.timerRunningQ());
-  if(timer1.timerRunningQ() == false) {
-    timer1.resetTimer(5);
-  }
-  //changeMode();  // toggle between modes 1 and 2
+//  if(timer1.timerRunningQ() == false) {
+//    timer1.resetTimer(5);
+//  }
   
-  //rotary.Update(); // Rotary_Class.h
+ 
  checkDHT(); // dht_functions.h
 
- //changeMode();
+ // update the button so it can be pressed again
  if(millis() - lastChangeTime > 500) {
   lastChangeTime = millis();
  }
  
  if(mode == 1) {
    // 1.  start 5 min timer
+   if(modeOneRunning == false) {
+    timer1.resetTimer(300);
+   }
    // 2.  Turn on motor
    digitalWrite(motorPin,HIGH);
    // 3.  Turn off mister
@@ -74,12 +79,14 @@ void loop()
    //after 5 minutes, 
    // 1.  start 55 min timer
    // 2.  turn off motor
-  // digitalWrite(motorPin,LOW);
+   // digitalWrite(motorPin,LOW);
    // 3.  turn off heater
   
    }
 
  if(mode == 2) {
+  // set flag to indicate that we've switched to mode2
+   modeOneRunning = false;
    // turn off mister
    digitalWrite(misterPin,LOW);
    // turn on motor
@@ -99,6 +106,10 @@ void loop()
 
 
 // FUNCTIONS
+void resetTimerTest() {
+  timer1.resetTimer(10);
+}
+
 void changeMode() {
   if(millis() - lastChangeTime < 400) {
    if(mode == 1) {
