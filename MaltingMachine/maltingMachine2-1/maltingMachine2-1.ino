@@ -14,9 +14,9 @@ volatile int encoder0Pos = 0;
 volatile int buttonState = 0;
 volatile int oldButtonState = 0;
 
-float lastModeChangeTime = 0;
-
+float lastChangeTime;
 int mode = 1;
+
 Timer timer1(300);
 
 void setup()
@@ -29,7 +29,7 @@ void setup()
   attachInterrupt(0, doEncoder, CHANGE);  // encoder pin on interrupt 0 - pin 2
 
   pinMode(buttonPin, INPUT);
-  attachInterrupt(2, updateModeChangeTime, CHANGE);
+  attachInterrupt(2, changeMode, FALLING);
   
   lcd.begin(20,4); // 20 columns, 4 rows
   setupLCD();  // lcd_functions.h
@@ -40,13 +40,14 @@ void setup()
   pinMode(motorPin,OUTPUT);
   pinMode(heaterPin,OUTPUT);
   pinMode(misterPin,OUTPUT);
-  
+
+  lastChangeTime = millis();
 }
 
 void loop()
 {
   //Serial.println(encoder0Pos);
-  Serial.println(millis() - lastModeChangeTime);
+  Serial.println(millis() - lastChangeTime);
   //Serial.println(timer1.timerRunningQ());
   if(timer1.timerRunningQ() == false) {
     timer1.resetTimer(5);
@@ -56,7 +57,10 @@ void loop()
   //rotary.Update(); // Rotary_Class.h
  checkDHT(); // dht_functions.h
 
- changeMode();
+ //changeMode();
+ if(millis() - lastChangeTime > 500) {
+  lastChangeTime = millis();
+ }
  
  if(mode == 1) {
    // 1.  start 5 min timer
@@ -95,22 +99,15 @@ void loop()
 
 
 // FUNCTIONS
-boolean canChangeMode() {
-  if(millis() - lastModeChangeTime > 50) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
 void changeMode() {
-  if(canChangeMode) {
-    if(mode == 1) {
-      mode = 2;
-    } else if (mode == 2) {
-      mode = 1;
-    }
-  }
+  if(millis() - lastChangeTime < 400) {
+   if(mode == 1) {
+    mode = 2;
+   } else if (mode == 2) {
+    mode = 1;
+   }
+   lastChangeTime = millis();
+  } 
 }
 
 void debugDHTandRotary() {
@@ -128,14 +125,6 @@ void fillLCD() {
   lcd.home();
   lcd.print("ThisIsTheSongThatNeverEndsYesItGoesOnAndOnMyFriendOnceHeStartedSingingItNotKnowingWhatItWasAndHeJustKeptOn");
 }
-
-void updateModeChangeTime() {
-  lastModeChangeTime = millis();
-}
-
-
- 
-
 
 
 
