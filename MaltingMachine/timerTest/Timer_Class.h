@@ -16,6 +16,7 @@ class Timer
   void resetTimer(long tLengthSeconds) {
     timerLength = tLengthSeconds*1000;
     previousMillis = millis();
+    Serial.println("Timer is reset!");
   }
   
   boolean timerRunningQ() 

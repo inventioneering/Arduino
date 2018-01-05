@@ -1,9 +1,13 @@
+#include "Timer_Class.h"
+
 int timerLength;  // in seconds
 int timerStartTime; // in milliseconds
 int firstMillis;
 
 
 #define buttonPin 21
+
+Timer timer1(10);
 
 void setup()
 {
@@ -25,12 +29,13 @@ void loop() {
   // put your main code here, to run repeatedly:
   if(digitalRead(buttonPin) == LOW) {
     digitalWrite(6,HIGH);
-    resetTimer(20);
+    //resetTimer(20);
+    timer1.resetTimer(20);
     
   } else {
     digitalWrite(6,LOW);
   }
-  Serial.println(secondsLeft());
+  Serial.println(timer1.secondsLeft());
 }
 
 
