@@ -70,16 +70,15 @@ void loop()
   lastChangeTime = millis();
  }
 
- // program start or just switched from mode == 2
  if(mode == 1) 
  {
-    manageTimer();
-    lcdPrint(mode,h,t,timer1.secondsLeft()); // print whole mode
+   manageTimer();
+   lcdPrint(mode,h,t,timer1.secondsLeft()); // print whole mode
  }
 
 
-
- if(mode == 2) {
+ if(mode == 2) 
+ {
   // set flag to indicate that we've switched to mode2
    modeOneOn = false;
    // turn off mister
