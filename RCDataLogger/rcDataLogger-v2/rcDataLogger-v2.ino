@@ -1,3 +1,5 @@
+
+
 /*
   SD card datalogger
 
@@ -24,8 +26,8 @@
 #include <SD.h>
 #include <Wire.h>
 #include <Adafruit_MPL3115A2.h>
-String randomer;
 String fileName;
+
 
 
 // Power by connecting Vin to 3-5V, GND to GND
@@ -37,9 +39,10 @@ Adafruit_MPL3115A2 baro = Adafruit_MPL3115A2();
 const int chipSelect = 4;
 
 void setup() {
-  randomSeed(analogRead(0));
-  randomer = String(random(1,100));
-  fileName = "rc_" + randomer + ".txt";
+  //randomSeed(analogRead(0));
+  //randomer = String(random(1,100));
+  //fileName = "rc_" + randomer + ".txt";
+  fileName = "rc.txt";
   
   pinMode(13, OUTPUT);
   // Open serial communications and wait for port to open:
@@ -153,6 +156,8 @@ void loop() {
     
   }
 }
+
+
 
 
 
